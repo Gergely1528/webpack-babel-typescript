@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf ./dist",
+    "build-dev": "webpack --mode development ./src/index.js -o ./dist/main-bundle.js",
+    "build-prod": "webpack --mode production ./src/index.js -o ./dist/main-bundle.js"
   },
   "keywords": [],
   "author": "",
