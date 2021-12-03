@@ -1,20 +1,24 @@
+
+  var path = require('path');
+  const NodemonPlugin = require('nodemon-webpack-plugin')
 module.exports = {
-    mode: 'development',
-    entry: [
-      './index.js'
-    ],
+    // Change to your "entry-point".
+    entry: ['./server'],
     output: {
-      filename: '[name]-bundle.js',
-    },  
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'server-bundle.js',
+    },
+    
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.json']
+    },
     module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: "babel-loader"
-          }
-        }
-      ]
-    }
-  };
+        rules: [{
+            // Include ts, tsx, js, and jsx files.
+            test: /\.(ts|js)x?$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader',
+        }],
+    },
+    plugins: [new NodemonPlugin()]
+};
